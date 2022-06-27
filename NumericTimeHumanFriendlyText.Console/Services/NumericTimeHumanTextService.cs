@@ -122,33 +122,33 @@ namespace NumericTimeHumanFriendlyText.Console.Services
             }
             else
             {
-                if ((minute - 30) / 10 > 1)
+                switch ((minute - 30) / 10)
                 {
-                    switch ((minute - 30) % 10)
-                    {
-                        case 0:
-                            minuteWord = (mins[((60 - minute) % 10)]).ToLower();
-                            break;
-                        default:
-                            minuteWord = (hours[((60 - minute) % 10)]).ToLower();
-                            break;
-                    }
-                }
-                else if ((minute - 30) / 10 > 0)
-                {
-                    switch (minute)
-                    {
-                        case 40:
-                            minuteWord = (tens[(60 - minute) % 10]).ToLower();
-                            break;
-                        default:
-                            minuteWord = (mins[(60 - minute) % 10]).ToLower();
-                            break;
-                    }
-                }
-                else
-                {
-                    minuteWord = (tens[(60 - minute) / 10 - 2] + hours[(60 - minute) % 10]).ToLower();
+                    case > 1:
+                        switch ((minute - 30) % 10)
+                        {
+                            case 0:
+                                minuteWord = (mins[((60 - minute) % 10)]).ToLower();
+                                break;
+                            default:
+                                minuteWord = (hours[((60 - minute) % 10)]).ToLower();
+                                break;
+                        }
+                        break;
+                    case > 0:
+                        switch (minute)
+                        {
+                            case 40:
+                                minuteWord = (tens[(60 - minute) % 10]).ToLower();
+                                break;
+                            default:
+                                minuteWord = (mins[(60 - minute) % 10]).ToLower();
+                                break;
+                        }
+                        break;
+                    default:
+                        minuteWord = (tens[(60 - minute) / 10 - 2] + hours[(60 - minute) % 10]).ToLower();
+                        break;
                 }
             }
             return minuteWord;
