@@ -127,10 +127,10 @@ namespace NumericTimeHumanFriendlyText.Console.Services
                     case > 1:
                         switch ((minute - 30) % 10)
                         {
-                            case 0:
+                            case 0: //It executes only for 50th min
                                 minuteWord = (mins[((60 - minute) % 10)]).ToLower();
                                 break;
-                            default:
+                            default: //It executes between 51 to 59 mins
                                 minuteWord = (hours[((60 - minute) % 10)]).ToLower();
                                 break;
                         }
@@ -139,14 +139,17 @@ namespace NumericTimeHumanFriendlyText.Console.Services
                         switch (minute)
                         {
                             case 40:
+                                //Only if the min is 40th min
                                 minuteWord = (tens[(60 - minute) % 10]).ToLower();
                                 break;
                             default:
+                                //It executes between 41 to 49 mins
                                 minuteWord = (mins[(60 - minute) % 10]).ToLower();
                                 break;
                         }
                         break;
                     default:
+                        //It executes between 31-39 mins
                         minuteWord = (tens[(60 - minute) / 10 - 2] + hours[(60 - minute) % 10]).ToLower();
                         break;
                 }
